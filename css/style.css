@@ -129,6 +129,7 @@ svg { display: block; }
   border: 1px solid #0c0c0c;
   border-radius: 4px;
 }
+.breadcrumb .crumb.root { margin-right: 4px; }
 .crumb {
   display: inline-flex;
   align-items: center;
@@ -141,19 +142,15 @@ svg { display: block; }
 .crumb.root { gap: 5px; padding: 0 6px; cursor: pointer; }
 .crumb.root svg { width: 14px; height: 14px; color: #d8b06a; }
 .crumb.root:hover { background: var(--bg-4); }
-.crumb.current, .crumb.current .crumb-label { color: var(--text-strong); font-weight: 600; }
-.crumb.tag { background: var(--bg-4); overflow: hidden; }
+.crumb.current { color: var(--text-strong); font-weight: 600; }
+.crumb.tag { background: var(--bg-4); overflow: hidden; color: var(--text-strong); }
 .crumb-label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   height: 100%;
   padding: 0 4px 0 8px;
-  background: none;
-  border: 0;
-  cursor: pointer;
 }
-.crumb-label:hover { color: var(--text-strong); text-decoration: underline; }
 .crumb-x {
   height: 100%;
   padding: 0 7px;
@@ -165,7 +162,6 @@ svg { display: block; }
   line-height: 1;
 }
 .crumb-x:hover { background: #a33; color: #fff; }
-.crumb-sep { color: var(--text-dim); font-size: 16px; padding: 0 1px; }
 
 .dot {
   display: inline-block;
