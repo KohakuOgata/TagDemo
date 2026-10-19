@@ -140,19 +140,14 @@
         [el("span", { html: '<svg viewBox="0 0 16 16"><path d="M1.5 3.5h5l1.5 1.5h6.5v8h-13z" fill="currentColor"/></svg>' }), "All"]
       )
     );
-    state.selected.forEach((t, i) => {
-      bc.append(el("span", { class: "crumb-sep", html: "&rsaquo;" }));
-      const chip = el("span", { class: "crumb tag" + (i === state.selected.length - 1 ? " current" : "") }, [
-        el("button", {
-          class: "crumb-label",
-          type: "button",
-          title: "ここまでのタグに戻る",
-          onclick: () => navigate(state.selected.slice(0, i + 1)),
-        }, [el("i", { class: "dot", style: `background:${tagColor(t)}` }), t]),
-        el("button", { class: "crumb-x", type: "button", title: `${t} を外す`, "aria-label": `${t} を外す`, onclick: () => removeTag(t) }, "×"),
-      ]);
-      bc.append(chip);
-    });
+    for (const t of state.selected) {
+      bc.append(
+        el("span", { class: "crumb tag" }, [
+          el("span", { class: "crumb-label" }, [el("i", { class: "dot", style: `background:${tagColor(t)}` }), t]),
+          el("button", { class: "crumb-x", type: "button", title: `${t} を外す`, "aria-label": `${t} を外す`, onclick: () => removeTag(t) }, "×"),
+        ])
+      );
+    }
     $("btn-back").disabled = history.length <= 1;
   }
 
@@ -284,8 +279,8 @@
         el("div", { class: "details-section help" }, [
           el("div", { class: "details-title" }, "使い方"),
           el("p", { html: "タグは<b>フォルダ</b>のように振る舞います。タグをクリックすると選択に加わり、そのタグの組み合わせを<b>ちょうど</b>持つアセットが表示されます。" }),
-          el("p", { html: "フォルダと違い<b>順序は関係ありません</b>。<code>Environment › Rock</code> と <code>Rock › Environment</code> は同じ場所です。" }),
-          el("p", { html: "パンくずのタグをクリックするとそこまで戻り、<b>×</b> でそのタグだけを外せます。" }),
+          el("p", { html: "フォルダと違い<b>順序は関係ありません</b>。<code>Environment</code> と <code>Rock</code> をどちらから選んでも同じ場所になります。" }),
+          el("p", { html: "選択中のタグは上部に並び、<b>×</b> でそのタグだけを外せます。<b>All</b> で全て解除します。" }),
         ])
       );
       return;
